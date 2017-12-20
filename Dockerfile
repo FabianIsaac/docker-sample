@@ -1,18 +1,19 @@
-FROM        ubuntu:14.04
-MAINTAINER  Dicotraining info@dicotraining.com
- 
+FROM ubuntu:16.04
 
 # Update the package repository
 RUN apt-get update -y && apt-get upgrade -y
 
+# Instalar programas base
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl
 
-# Install base system
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget curl 
+# Instalar apache
+RUN apt-get install -y apache2 libapache2-mod-auth-pgsql libapache2-mod-php7.0
 
- 
-# Install PHP 5.5
-RUN apt-get update; apt-get install -y php5-cli php5 php5-mcrypt php5-curl php5-pgsql php5-mysql
- 
+# Instalar PHP7
+RUN apt-get install -y php7.0 php7.0-cli php7.0-mcrypt php7.0-curl php7.0-pgsql
+
+# Instalar herramientas
+RUN apt-get install -y composer
 
 ADD ./config/001-docker.conf /etc/apache2/sites-available/
 RUN ln -s /etc/apache2/sites-available/001-docker.conf /etc/apache2/sites-enabled/
@@ -28,7 +29,7 @@ ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_SERVERADMIN admin@localhost
 ENV APACHE_SERVERNAME localhost
 ENV APACHE_SERVERALIAS docker.localhost
-ENV APACHE_DOCUMENTROOT /var/www
+ENV APACHE_DOCUMENTROOT /var/www/html
 
 EXPOSE 80
 ADD ./scripts/info.php /var/www/html/info.php

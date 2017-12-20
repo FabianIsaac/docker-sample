@@ -1,8 +1,11 @@
-Example of Apache with Docker
+Docker Apache - PHP 7
 ===========
+### Imagen base
 
-### Apache environment variables
-Apache will make of the following environment variables.
+Ubuntu 16.04
+
+### Variables de entorno apache
+Se crearan las siguientes variables de entorno para Apache
 
 	APACHE_SERVERADMIN=admin@localhost
 	APACHE_SERVERNAME=localhost
@@ -16,35 +19,19 @@ Apache will make of the following environment variables.
 	APACHE_LOCK_DIR=/var/lock/apache2
 
 
-### Image Base
+### Contruir imagen
 
-Ubuntu 14.04
-
-
-### How to Build
-
-Simply `docker build -t your_image_name https://github.com/dicotraining/docker-sample.git`
-
-That's all
-
-### Start the container
-The container has all pre requisites set up to run any apache application. You can specify all needed environment variables.
-
-	$ sudo docker run -i -d -p 80 -e APACHE_SERVERNAME=myServer.local 
-
-Browser to url http://localhost:80.
+Ejecutar `docker build -t nombre_imagen https://github.com/dicotraining/docker-sample.git`
 
 
 
-### Get the container ip and port
+### Iniciar contenedor
+El contenedor tendra todo lo necesario para ser un servidor web php, dando la opcion de cambiar las configuraciones mediante las variables de entorno 
 
-    $ sudo docker inspect --format='{{.NetworkSettings.IPAddress}}' <container_id> 
-    $ sudo docker port <container_id> 80 | cut -d ":" -f2
+	$ sudo docker run -i -d -p 8080 -e APACHE_SERVERNAME=myServer.local 
 
-Now go to `<your container's ip>:<container's port>` in your browser
+Desde el navegador http://localhost:8080.
 
+### Otras herramientas
 
-### Stop the container
-
-	$ sudo docker stop $(docker ps -ql)`
-
+- Composer
