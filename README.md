@@ -21,7 +21,7 @@ Se crearan las siguientes variables de entorno para Apache
 
 ### Contruir imagen
 
-Ejecutar `docker build -t nombre_imagen https://github.com/dicotraining/docker-sample.git`
+Ejecutar `docker build -t nombre_imagen https://github.com/FabianIsaac/docker-sample.git`
 
 
 
