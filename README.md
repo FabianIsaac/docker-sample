@@ -10,7 +10,7 @@ Se crearan las siguientes variables de entorno para Apache
 	APACHE_SERVERADMIN=admin@localhost
 	APACHE_SERVERNAME=localhost
 	APACHE_SERVERALIAS=docker.localhost
-	APACHE_DOCUMENTROOT=/var/www
+	APACHE_DOCUMENTROOT=/var/www/html
 	APACHE_RUN_USER=www-data
 	APACHE_RUN_GROUP=www-data
 	APACHE_LOG_DIR=/var/web/log/apache2
